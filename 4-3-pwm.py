@@ -1,4 +1,5 @@
 import RPi.GPIO as gpio
+import math
 gpio.setmode(gpio.BCM)
 gpio.setup([22, 24], gpio.OUT)
 gpio.setup(2, gpio.IN)
@@ -11,7 +12,7 @@ try:
         d=int(input())
         p1.start(d)
         p2.start(d)
-        uud=3.3*d/100
+        uud=2.1*d/100*(1+(100-d)/100*(math.sin(3.14159265358979323846*d/50)))+1.2
         print("Предполагаемое значение = {:.4f} В".format(uud))
 finally:
     p1.stop()
